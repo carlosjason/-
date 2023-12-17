@@ -1,0 +1,26 @@
+// ==UserScript==
+// @name         jointquant代码
+// @namespace    https://www.joinquant.com/
+// @version      0.1
+// @description  try to take over the world!
+// @author       carlosli
+// @include     *://*joinquant.com/view/community/detail/*
+// @grant        none
+// ==/UserScript==
+
+
+(window.onload=function() {
+    'use strict';
+
+    console.log("start");
+    var site = document.querySelector("body > section > main > div > div.jq-m-community__content > div.jq-m-community__text > div.not-border > div > div > iframe").src;
+    var regex = /backtestId=(.*)&postId=/g;
+    var result = regex.exec(site);
+    var link = "https://www.joinquant.com/algorithm/backtest/detail?backtestId=" + result[1];
+    const showBtn = document.createElement('a'); showBtn.className = 'chiiBtn'; showBtn.href=link; showBtn.textContent = '策略代码';document.querySelector("body > section > main > div > div.jq-m-community__content > div.jq-m-community__title").append(showBtn);
+    console.log("end");
+}
+
+
+
+)();
